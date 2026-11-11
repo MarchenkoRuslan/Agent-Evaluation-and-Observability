@@ -1,0 +1,69 @@
+﻿Evaluation and Observability Capstone - execution environment
+
+Run date: 2026-11-11
+Observed local timestamp: 2026-11-11T11:47:06.8824814+02:00
+OS: Microsoft Windows NT 10.0.26200.0, win32
+Runtime used for project environments: Python 3.12.10, 64-bit
+Default Python before setup: Python 3.14.6 (not used for project runs)
+Shell: Windows PowerShell
+Workspace: C:\Users\[REDACTED_USER]\Desktop\Agent Evaluation and Observability
+The supplied workspace is not a Git worktree; git status reported this explicitly.
+
+Setup:
+  pymanager install 3.12
+  For each final solution directory:
+    py -3.12 -m venv .venv
+    .venv\Scripts\python.exe -m pip install -e ".[dev]"
+  Each project has its own .venv; activation is not required.
+  All commands use the relevant environment's executable explicitly.
+
+Final solution directories:
+  Build a Validated, Routed Insurance Policy Extraction Pipeline/04-hitl-routing/solution
+  Build a Resilient Mortgage Document Extraction System/04-validate-mathematical-consistency/solution
+  Investigate Supply Chain Risk with Multi-Source Synthesis/03-resilient-coordinator/solution
+
+Capture method:
+  Native stdout/stderr are captured as UTF-8 text with command, working directory,
+  timestamps, and native exit code. Generated briefings are also retained as Markdown.
+  A successful capture does not imply a successful underlying command.
+  Credentials are excluded from captures. ANTHROPIC_API_KEY is removed during
+  offline tests so the three optional policy live tests remain skipped.
+  Live policy runs use the process environment and https://claude.vocareum.com.
+  Mortgage uses --mode replay; supply chain uses --offline.
+  Offline excludes live model calls, not dependency/model downloads.
+
+Setup interruption:
+  The terminal initially stopped returning output while dependency installation
+  continued. A control-C restored the prompt. Policy and mortgage installation
+  logs both ended with EXIT_CODE=0; the interrupted supply-chain installation
+  was completed by a repeated editable installation. A further pass used
+  --no-compile to avoid unnecessary bytecode generation. Versions remain within
+  the unchanged pyproject requirements. Install/retry logs are retained.
+
+Capture corrections:
+  PowerShell 5.1 initially decoded native UTF-8 output using the console code page.
+  Supply-chain runs were repeated with Console.OutputEncoding and OutputEncoding
+  set to UTF-8; briefing Markdown is generated stdout, not manually rewritten.
+  Loader/progress messages on stderr can appear as PowerShell NativeCommandError
+  records even when the native exit code is 0; these are retained and are not
+  treated as application failures without checking that exit code.
+  Start-Transcript did not capture native Python debugger stdout.
+  offline-runtime-records.txt explicitly labels its manual terminal transcription.
+  Before public publication, the Windows account and computer name were replaced
+  with redaction markers in captured paths and transcript metadata. Commands,
+  test results, model responses, and exit codes were not changed.
+
+Observed completion:
+  Policy: 45 passed, 3 skipped; mortgage: 25 passed; supply chain: 34 passed.
+  mypy and ruff completed with exit 0 for each package.
+  Mortgage replay and supply-chain offline runs completed.
+  Initial policy requests used a different, inherited environment credential;
+  Vocareum returned HTTP 400 for that credential. It was incorrectly assumed
+  to be the course key supplied in chat. After switching explicitly to the
+  supplied course key, the API returned HTTP 200 and live extraction/review ran.
+  Initial failures are retained under 01-policy-pipeline/initial-credential-attempts/.
+  Final run results and routing counts are in submission-status.md and the live
+  captures. No credential value is recorded in this evidence pack.
+
+Application source, tests, and recorded API responses are not modified.
+Execution completion and outstanding requirements are recorded in submission-status.md.

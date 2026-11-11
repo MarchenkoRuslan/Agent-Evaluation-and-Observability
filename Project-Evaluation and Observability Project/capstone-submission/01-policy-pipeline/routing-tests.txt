@@ -1,0 +1,29 @@
+﻿WORKING_DIRECTORY: C:\Users\[REDACTED_USER]\Desktop\Agent Evaluation and Observability\Build a Validated, Routed Insurance Policy Extraction Pipeline\04-hitl-routing\solution
+COMMAND: .\.venv\Scripts\python.exe -m pytest tests/test_us04_routing.py -v
+STARTED: 2026-11-11T12:03:15.8442815+02:00
+C:\Users\[REDACTED_USER]\Desktop\Agent Evaluation and Observability\Build a Validated, Routed Insurance Policy Extraction Pipeline\04-hitl-routing\solution\.venv\Lib\site-packages\pytest_asyncio\plugin.py:300: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the "fixture" caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to "function" scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+System.Management.Automation.RemoteException
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts =============================
+platform win32 -- Python 3.12.10, pytest-9.2.0, pluggy-1.7.0 -- C:\Users\[REDACTED_USER]\Desktop\Agent Evaluation and Observability\Build a Validated, Routed Insurance Policy Extraction Pipeline\04-hitl-routing\solution\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\[REDACTED_USER]\Desktop\Agent Evaluation and Observability\Build a Validated, Routed Insurance Policy Extraction Pipeline\04-hitl-routing\solution
+configfile: pyproject.toml
+plugins: anyio-4.16.0, asyncio-1.4.1.post1
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 9 items
+
+tests/test_us04_routing.py::test_ac_04_02_all_clear_routes_to_auto_approve PASSED [ 11%]
+tests/test_us04_routing.py::test_ac_04_02_low_confidence_routes_to_human_review PASSED [ 22%]
+tests/test_us04_routing.py::test_ac_04_02_integration_failure_routes_to_human_review PASSED [ 33%]
+tests/test_us04_routing.py::test_ac_04_06_high_confidence_plus_reviewer_disagreement_still_routes_to_human_review PASSED [ 44%]
+tests/test_us04_routing.py::test_ac_04_03_stratified_sampler_picks_from_every_stratum_with_eligible_records PASSED [ 55%]
+tests/test_us04_routing.py::test_ac_04_03_only_auto_approve_decisions_are_eligible_for_spot_check PASSED [ 66%]
+tests/test_us04_routing.py::test_ac_04_04_calibration_report_is_sliced_by_policy_type_and_field PASSED [ 77%]
+tests/test_us04_routing.py::test_ac_04_04_calibration_report_handles_empty_input PASSED [ 88%]
+tests/test_us04_routing.py::test_ac_04_05_routing_decisions_written_to_json_file PASSED [100%]
+
+============================== 9 passed in 0.16s ==============================
+EXIT_CODE=0
+FINISHED: 2026-11-11T12:03:24.9276876+02:00

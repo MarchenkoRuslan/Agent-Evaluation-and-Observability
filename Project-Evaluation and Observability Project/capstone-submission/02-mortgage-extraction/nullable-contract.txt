@@ -1,0 +1,30 @@
+﻿SOURCE: mortgage_extractor/models.py, unchanged reference models.
+class Income(_BaseRecord):
+    base_monthly: float | None = None
+    bonus_monthly: float | None = None
+    bonus_ytd: float | None = None
+    commission_monthly: float | None = None
+    overtime_monthly: float | None = None
+    other_monthly: float | None = None
+    stated_monthly_total: float | None = None
+
+    @property
+    def calculated_monthly_total(self) -> float | None:
+        """Sum of the per-component monthly fields, or ``None`` if none set.
+
+        ``None`` (versus ``0.0``) distinguishes "the document stated no income
+        components" from "the document stated all components are zero". The
+        validator interprets the two cases differently.
+        """
+        components = [
+            self.base_monthly,
+            self.bonus_monthly,
+            self.commission_monthly,
+            self.overtime_monthly,
+            self.other_monthly,
+        ]
+        non_null = [c for c in components if c is not None]
+        return sum(non_null) if non_null else None
+
+
+class MortgageExtraction(_BaseRecord):

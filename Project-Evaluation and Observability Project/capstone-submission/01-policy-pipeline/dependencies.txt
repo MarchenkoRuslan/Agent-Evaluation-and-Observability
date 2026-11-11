@@ -1,0 +1,36 @@
+﻿WORKING_DIRECTORY: C:\Users\[REDACTED_USER]\Desktop\Agent Evaluation and Observability\Build a Validated, Routed Insurance Policy Extraction Pipeline\04-hitl-routing\solution
+COMMAND: .\.venv\Scripts\python.exe -m pip freeze
+STARTED: 2026-11-11T12:06:43.3160302+02:00
+annotated-types==0.8.0
+anthropic==2.8.0
+anyio==4.16.0
+ast_serialize==0.13.1
+colorama==0.4.6
+docstring_parser==0.18.0
+h11==0.16.0
+httpcore2==2.16.0
+httpx2==2.16.0
+idna==3.20
+iniconfig==2.3.1
+jiter==0.19.0
+librt==0.16.0
+mypy==2.4.1
+mypy_extensions==1.2.0
+opentelemetry-api==1.45.2
+packaging==26.3
+pathspec==1.1.1
+pluggy==1.7.0
+# Editable install with no version control (policy-extractor==0.2.0)
+-e c:\users\[REDACTED_USER]\desktop\agent evaluation and observability\build a validated, routed insurance policy extraction pipeline\04-hitl-routing\solution
+pydantic==2.14.3
+pydantic_core==2.50.4
+Pygments==2.21.0
+pytest==9.2.0
+pytest-asyncio==1.4.1.post1
+ruff==0.17.4
+sniffio==1.3.1
+truststore==0.10.5
+typing-inspection==0.4.5
+typing_extensions==4.16.0
+EXIT_CODE=0
+FINISHED: 2026-11-11T12:06:47.9684763+02:00

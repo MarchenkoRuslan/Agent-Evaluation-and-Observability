@@ -1,0 +1,34 @@
+﻿WORKING_DIRECTORY: C:\Users\[REDACTED_USER]\Desktop\Agent Evaluation and Observability\Build a Resilient Mortgage Document Extraction System\04-validate-mathematical-consistency\solution
+COMMAND: .\.venv\Scripts\mortgage-extract.exe fixtures/documents/income_missing_bonus.txt --mode replay --verbose
+STARTED: 2026-11-11T12:02:40.5590775+02:00
+mortgage_extractor.pipeline: classify: model=claude-haiku-4-5-20251001 in=1536 out=97 type=income_verification
+mortgage_extractor.pipeline: extract: model=claude-haiku-4-5-20251001 in=3695 out=190 tool=extract_income_verification
+{
+  "extraction": {
+    "borrower": {
+      "full_name": "Daniel R. Whitfield",
+      "coborrower_name": null,
+      "ssn_last4": null,
+      "date_of_birth": null,
+      "email": null,
+      "phone": null
+    },
+    "property": null,
+    "loan": null,
+    "income": {
+      "base_monthly": 5673.08,
+      "bonus_monthly": null,
+      "bonus_ytd": null,
+      "commission_monthly": null,
+      "overtime_monthly": null,
+      "other_monthly": null,
+      "stated_monthly_total": null
+    }
+  },
+  "validation": {
+    "consistent": true,
+    "discrepancies": []
+  }
+}
+EXIT_CODE=0
+FINISHED: 2026-11-11T12:02:49.5898826+02:00

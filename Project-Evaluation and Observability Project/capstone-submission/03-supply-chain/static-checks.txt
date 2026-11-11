@@ -1,0 +1,11 @@
+﻿WORKING_DIRECTORY: C:\Users\[REDACTED_USER]\Desktop\Agent Evaluation and Observability\Investigate Supply Chain Risk with Multi-Source Synthesis\03-resilient-coordinator\solution
+COMMAND: .\.venv\Scripts\python.exe -m mypy supply_chain_risk/
+STARTED: 2026-11-11T12:09:29.2407908+02:00
+Success: no issues found in 8 source files
+EXIT_CODE=0
+FINISHED: 2026-11-11T12:09:38.4749477+02:00
+
+COMMAND: .\.venv\Scripts\python.exe -m ruff check supply_chain_risk/ tests/
+All checks passed!
+EXIT_CODE=0
+FINISHED: 2026-11-11T12:09:39.5339978+02:00

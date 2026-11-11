@@ -1,0 +1,34 @@
+﻿SOURCE: tests/test_us01_retry.py, unchanged reference test; call count uses RecordedClient.
+def test_ac_01_04_missing_source_halts_immediately() -> None:
+    """Null required field => RetryFutileEscalation, exactly one API call."""
+    response = make_tool_use_message(
+        "extract_policy",
+        {
+            "policy_type": "auto",
+            "premium_amount": 1512.88,
+            "deductible": 500.0,
+            "coverage_limit": 300000.0,
+            "endorsements": None,  # model couldn't find Schedule A
+            "exclusions": ["Nuclear hazard"],
+            "confidence": {
+                "policy_type": 0.95,
+                "premium_amount": 0.95,
+                "deductible": 0.95,
+                "coverage_limit": 0.9,
+                "endorsements": 0.2,
+                "exclusions": 0.9,
+            },
+        },
+    )
+    client = RecordedClient([response])
+    result = extract_with_retry(
+        client=client,
+        policy_id="POL-2025-009",
+        document_text=load_policy_text("POL-2025-009"),
+        max_retries=3,
+    )
+    assert isinstance(result, RetryFutileEscalation)
+    assert result.field == "endorsements"
+    assert result.detected_pattern == "endorsements_absent"
+    assert client.call_count == 1  # no further API call
+

@@ -1,0 +1,15 @@
+﻿WORKING_DIRECTORY: C:\Users\[REDACTED_USER]\Desktop\Agent Evaluation and Observability\Build a Validated, Routed Insurance Policy Extraction Pipeline\04-hitl-routing\solution
+COMMAND: .\.venv\Scripts\policy-extractor.exe extract C:\Users\[REDACTED_USER]\Desktop\Agent Evaluation and Observability\Project-Evaluation and Observability Project\capstone-submission\01-policy-pipeline\inputs\POL-2025-001-missing-premium.txt --policy-id POL-EXP-MISSING-PREMIUM
+STARTED: 2026-11-11T12:28:08.3758804+02:00
+2026-11-11 12:28:22,810 INFO HTTP Request: POST https://claude.vocareum.com/v1/messages "HTTP/1.1 200 OK"
+2026-11-11 12:28:22,821 INFO validation_failed
+{
+  "category": "missing_source",
+  "detected_pattern": "premium_amount_absent",
+  "field": "premium_amount",
+  "kind": "escalation",
+  "policy_id": "POL-EXP-MISSING-PREMIUM",
+  "reason": "Field 'premium_amount' returned null \u2014 the source document does not contain this information. Retry is futile; escalate to human review."
+}
+EXIT_CODE=1
+FINISHED: 2026-11-11T12:28:23.0394837+02:00

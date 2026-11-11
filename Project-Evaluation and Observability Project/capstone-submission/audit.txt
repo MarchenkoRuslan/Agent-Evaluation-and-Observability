@@ -1,0 +1,40 @@
+﻿AUDIT_DATE: 2026-11-11T12:34:05.8919738+02:00
+PASS full suite: 01-policy-pipeline / 45 passed, 3 skipped
+PASS mypy + ruff: 01-policy-pipeline
+PASS full suite: 02-mortgage-extraction / 25 passed
+PASS mypy + ruff: 02-mortgage-extraction
+PASS full suite: 03-supply-chain / 34 passed
+PASS mypy + ruff: 03-supply-chain
+PASS live routing JSON has 9 decisions matching pipeline summary
+PASS live route count: auto_approve=1
+PASS live route count: human_review=7
+PASS live route count: spot_check=1
+PASS all 10 bundled policy IDs accounted for (9 routes + 1 escalation)
+PASS live reflection example: POL-2025-001 reviewer disagreement despite coverage confidence 1.0
+PASS live baseline extraction: premium 1847.62, zero corrective retries
+PASS live modified input: expected missing-source escalation and exit 1
+PASS exactly one logged Messages request for modified policy
+PASS copied policy differs only by removed premium line
+PASS run exit 0: 01-policy-pipeline/pipeline-run.txt
+PASS run exit 0: 01-policy-pipeline/perturbation-baseline.txt
+PASS run exit 0: 02-mortgage-extraction/extract-run.txt
+PASS run exit 0: 02-mortgage-extraction/missing-field-run.txt
+PASS run exit 0: 03-supply-chain/investigation-run.txt
+PASS run exit 0: 03-supply-chain/timeout-run.txt
+PASS mortgage discrepancy: -1250.0
+PASS reflection prompt 1a
+PASS reflection prompt 1b
+PASS reflection prompt 1c
+PASS reflection prompt 2a
+PASS reflection prompt 2b
+PASS reflection prompt 2c
+PASS reflection prompt 3a
+PASS reflection prompt 3b
+PASS reflection prompt 3c
+PASS reflection prompt 4a
+PASS reflection prompt 4b
+PASS reflection prompt 4c
+CHECK markdown links, JSON examples, and secret/excluded-file scan completed
+LIVE_API_ACCESS_BLOCKERS=0 (initial inherited-credential failures are historical)
+PERSONAL_FIELD: learner name not provided
+AUDIT_ISSUE_COUNT=0

@@ -1,0 +1,41 @@
+﻿WORKING_DIRECTORY: C:\Users\[REDACTED_USER]\Desktop\Agent Evaluation and Observability\Build a Resilient Mortgage Document Extraction System\04-validate-mathematical-consistency\solution
+COMMAND: .\.venv\Scripts\mortgage-extract.exe fixtures/documents/income_sum_mismatch.txt --mode replay --verbose
+STARTED: 2026-11-11T12:02:49.6405411+02:00
+mortgage_extractor.pipeline: classify: model=claude-haiku-4-5-20251001 in=1612 out=96 type=income_verification
+mortgage_extractor.pipeline: extract: model=claude-haiku-4-5-20251001 in=3771 out=199 tool=extract_income_verification
+{
+  "extraction": {
+    "borrower": {
+      "full_name": "Marcus T. Hollingsworth",
+      "coborrower_name": null,
+      "ssn_last4": null,
+      "date_of_birth": null,
+      "email": null,
+      "phone": null
+    },
+    "property": null,
+    "loan": null,
+    "income": {
+      "base_monthly": 5416.67,
+      "bonus_monthly": 1250.0,
+      "bonus_ytd": null,
+      "commission_monthly": 2140.0,
+      "overtime_monthly": 385.5,
+      "other_monthly": 450.0,
+      "stated_monthly_total": 10892.17
+    }
+  },
+  "validation": {
+    "consistent": false,
+    "discrepancies": [
+      {
+        "field": "total_monthly_income",
+        "calculated": 9642.17,
+        "stated": 10892.17,
+        "delta": -1250.0
+      }
+    ]
+  }
+}
+EXIT_CODE=1
+FINISHED: 2026-11-11T12:02:58.6035921+02:00

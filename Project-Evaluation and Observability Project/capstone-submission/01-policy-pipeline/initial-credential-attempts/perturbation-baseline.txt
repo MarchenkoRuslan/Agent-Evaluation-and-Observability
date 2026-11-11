@@ -1,0 +1,37 @@
+﻿WORKING_DIRECTORY: C:\Users\[REDACTED_USER]\Desktop\Agent Evaluation and Observability\Build a Validated, Routed Insurance Policy Extraction Pipeline\04-hitl-routing\solution
+COMMAND: .\.venv\Scripts\policy-extractor.exe extract data/policies/POL-2025-001.txt --policy-id POL-2025-001
+STARTED: 2026-11-11T12:03:39.6128934+02:00
+2026-11-11 12:03:47,449 INFO HTTP Request: POST https://claude.vocareum.com/v1/messages "HTTP/1.1 400 Bad Request"
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\[REDACTED_USER]\Desktop\Agent Evaluation and Observability\Build a Validated, Routed Insurance Policy Extraction Pipeline\04-hitl-routing\solution\.venv\Scripts\policy-extractor.exe\__main__.py", line 7, in <module>
+  File "C:\Users\[REDACTED_USER]\Desktop\Agent Evaluation and Observability\Build a Validated, Routed Insurance Policy Extraction Pipeline\04-hitl-routing\solution\policy_extractor\__main__.py", line 78, in main
+    return _cmd_extract(args)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\[REDACTED_USER]\Desktop\Agent Evaluation and Observability\Build a Validated, Routed Insurance Policy Extraction Pipeline\04-hitl-routing\solution\policy_extractor\__main__.py", line 89, in _cmd_extract
+    outcome = extract_with_retry(
+              ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\[REDACTED_USER]\Desktop\Agent Evaluation and Observability\Build a Validated, Routed Insurance Policy Extraction Pipeline\04-hitl-routing\solution\policy_extractor\retry.py", line 48, in extract_with_retry
+    response = client.create(
+               ^^^^^^^^^^^^^^
+  File "C:\Users\[REDACTED_USER]\Desktop\Agent Evaluation and Observability\Build a Validated, Routed Insurance Policy Extraction Pipeline\04-hitl-routing\solution\policy_extractor\client.py", line 27, in create
+    result: Message = self._client.messages.create(**kwargs)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\[REDACTED_USER]\Desktop\Agent Evaluation and Observability\Build a Validated, Routed Insurance Policy Extraction Pipeline\04-hitl-routing\solution\.venv\Lib\site-packages\anthropic\_utils\_utils.py", line 294, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\[REDACTED_USER]\Desktop\Agent Evaluation and Observability\Build a Validated, Routed Insurance Policy Extraction Pipeline\04-hitl-routing\solution\.venv\Lib\site-packages\anthropic\resources\messages\messages.py", line 1247, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\[REDACTED_USER]\Desktop\Agent Evaluation and Observability\Build a Validated, Routed Insurance Policy Extraction Pipeline\04-hitl-routing\solution\.venv\Lib\site-packages\anthropic\_base_client.py", line 1687, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\[REDACTED_USER]\Desktop\Agent Evaluation and Observability\Build a Validated, Routed Insurance Policy Extraction Pipeline\04-hitl-routing\solution\.venv\Lib\site-packages\anthropic\_base_client.py", line 1238, in request
+    return self._request(cast_to, options, stream=stream, stream_cls=stream_cls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\[REDACTED_USER]\Desktop\Agent Evaluation and Observability\Build a Validated, Routed Insurance Policy Extraction Pipeline\04-hitl-routing\solution\.venv\Lib\site-packages\anthropic\_base_client.py", line 1341, in _request
+    raise self._make_status_error_from_response(response) from None
+anthropic.BadRequestError: Error code: 400 - {'error': {'code': None, 'message': 'You are no longer enrolled in the course for this key. Key access is suspended. Please contact your instructor.', 'param': None, 'type': 'invalid_request_error'}}
+EXIT_CODE=1
+FINISHED: 2026-11-11T12:03:47.7313911+02:00

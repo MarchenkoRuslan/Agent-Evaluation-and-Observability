@@ -1,0 +1,17 @@
+﻿supply-chain-investigate.exe : 
+At line:1 char:831
++ ... oding utf8; & 
+'.\.venv\Scripts\supply-chain-investigate.exe' @($case. 
+...
++                 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [] 
+   , RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 
+1520.77it/s]
+Warning: You are sending unauthenticated requests to the 
+HF Hub. Please set a HF_TOKEN to enable higher rate 
+limits and faster downloads.

@@ -1,0 +1,34 @@
+.DS_Store
+.vscode
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# Tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Capstone snapshot: keep earlier course exercises and local archives out of Git.
+*.zip
+/Build a Resilient Mortgage Document Extraction System/01-*/
+/Build a Resilient Mortgage Document Extraction System/02-*/
+/Build a Resilient Mortgage Document Extraction System/03-*/
+/Build a Resilient Mortgage Document Extraction System/04-*/starter/
+/Build a Validated, Routed Insurance Policy Extraction Pipeline/01-*/
+/Build a Validated, Routed Insurance Policy Extraction Pipeline/02-*/
+/Build a Validated, Routed Insurance Policy Extraction Pipeline/03-*/
+/Build a Validated, Routed Insurance Policy Extraction Pipeline/04-*/starter/
+/Investigate Supply Chain Risk with Multi-Source Synthesis/01-*/
+/Investigate Supply Chain Risk with Multi-Source Synthesis/02-*/
+/Investigate Supply Chain Risk with Multi-Source Synthesis/03-*/starter/

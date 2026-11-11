@@ -1,0 +1,7 @@
+﻿WORKING_DIRECTORY: C:\Users\[REDACTED_USER]\Desktop\Agent Evaluation and Observability\Investigate Supply Chain Risk with Multi-Source Synthesis\03-resilient-coordinator\solution
+COMMAND: .\.venv\Scripts\python.exe -m pytest tests/ -q
+STARTED: 2026-11-11T12:08:09.7408525+02:00
+..................................                                       [100%]
+34 passed in 75.91s (0:01:15)
+EXIT_CODE=0
+FINISHED: 2026-11-11T12:09:29.2020067+02:00

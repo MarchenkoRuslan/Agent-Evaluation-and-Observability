@@ -1,0 +1,47 @@
+OFFLINE RUNTIME EVIDENCE - existing tests, inspected without source changes
+Date: 2026-11-11
+Environment: policy .venv, Python 3.12.10; API key absent
+
+Capture provenance:
+The following is a manual copy of the native Python debugger output
+returned by the VS Code terminal during this run. PowerShell Start-Transcript
+captured host metadata but did not capture the native Python stdout. This file
+therefore is a labeled terminal-output transcription, not an automated host
+transcript, live policy extraction, or generated routing_decisions.json.
+
+Command (from the policy final solution):
+.venv\Scripts\python.exe -m pytest tests/test_us01_retry.py::test_ac_01_01_extractor_parses_well_formed_response tests/test_us01_retry.py::test_ac_01_04_missing_source_halts_immediately tests/test_us04_routing.py::test_ac_04_06_high_confidence_plus_reviewer_disagreement_still_routes_to_human_review -v --trace
+
+At each test-entry Pdb prompt, 'r' ran the unchanged test through its assertions
+to the return event. 'p' inspected its existing local result; 'c' continued.
+No input, response, local variable, assertion, or application source was altered.
+
+1. test_ac_01_01_extractor_parses_well_formed_response
+
+(Pdb) p (result, client.call_count)
+(PolicyExtraction(policy_id='POL-2025-001', policy_type='auto', premium_amount=1847.62, deductible=500.0, coverage_limit=300000.0, endorsements=[Endorsement(name='Roadside Assistance', limit=None)], exclusions=['Racing'], premium_components=None, confidence={'policy_type': 0.99, 'premium_amount': 0.97, 'deductible': 0.95, 'coverage_limit': 0.95, 'endorsements': 0.92, 'exclusions': 0.94}, retry_count=0, final_attempt_index=0, validation_history=[]), 1)
+
+2. test_ac_01_04_missing_source_halts_immediately
+
+(Pdb) p (result, client.call_count)
+(RetryFutileEscalation(policy_id='POL-2025-009', field='endorsements', category='missing_source', detected_pattern='endorsements_absent', reason="Field 'endorsements' returned null -- the source document does not contain this information. Retry is futile; escalate to human review."), 1)
+
+Capture encoding note: the separator after 'null' in the terminal was a Unicode
+em dash; the sentence is also quoted below in ASCII with that separator written
+as '--', rather than treating an encoding conversion as part of the result:
+Field 'endorsements' returned null -- the source document does not contain this information. Retry is futile; escalate to human review.
+
+3. test_ac_04_06_high_confidence_plus_reviewer_disagreement_still_routes_to_human_review
+
+(Pdb) p decision
+RoutingDecision(policy_id='POL-X', policy_type='auto', decision='human_review', reason="reviewer_disagreement=['premium_amount']", fields_below_threshold=[], reviewer_disagreements=['premium_amount'], integration_failures=[], confidence_summary={'policy_type': 0.99, 'premium_amount': 0.99, 'deductible': 0.99, 'coverage_limit': 0.99, 'endorsements': 0.99, 'exclusions': 0.99})
+
+Final native pytest summary:
+============= 3 passed in 90.41s (0:01:30) ==============
+
+Scope: these are controlled offline test records, not the ten-document live
+pipeline results. Initial requests with an inherited credential failed at the
+Vocareum access gate; the explicitly supplied course credential later worked.
+See pipeline-run.txt and routing_decisions.json for the separate live evidence.
+Full suite results are in tests.txt, retry-tests.txt, and routing-tests.txt.
+The null-required-field assertion is in retry-contract.txt.
