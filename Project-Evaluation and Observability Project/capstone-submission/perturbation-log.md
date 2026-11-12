@@ -1,7 +1,8 @@
 # Perturbation Log
 
 Predictions below were recorded before the corresponding experiment runs.
-Commands run from the final solution for the named system, using its own `.venv`.
+Commands run from the final solution for the named system, using its own `.venv`,
+except for the explicitly identified temporary mortgage experiment copy.
 Evidence paths are relative to this submission folder.
 
 ## System 1 - Validated, Routed Pipeline
@@ -18,13 +19,13 @@ Evidence paths are relative to this submission folder.
 
 ## System 2 - Schema-Enforced Two-Pass Extraction
 
-- **Change selected:** Switch the CLI input from bundled `appraisal_informal_sqft.txt` to bundled `income_sum_mismatch.txt`, using the course's offline perturbation starter.
-- **Baseline command:** `.venv\Scripts\mortgage-extract.exe fixtures/documents/appraisal_informal_sqft.txt --mode replay`
-- **Perturbed command:** `.venv\Scripts\mortgage-extract.exe fixtures/documents/income_sum_mismatch.txt --mode replay`
-- **Prediction:** The appraisal validates cleanly and normalizes its living area. The mismatch fixture still produces structured extraction, but arithmetic validation reports a discrepancy and exits with code 1.
-- **Scope:** This compares two different prerecorded fixture documents, not a freshly edited same-document pair. Arbitrary edits change the content-hashed replay request and would test a cache miss rather than arithmetic validation.
-- **Observed output:** [extract-run.txt](02-mortgage-extraction/extract-run.txt) records `type=appraisal`, `gross_living_area_sqft: 2400`, `consistent: true`, and exit 0. [discrepancy-run.txt](02-mortgage-extraction/discrepancy-run.txt) records `type=income_verification`, `consistent: false`, `field: total_monthly_income`, `calculated: 9642.17`, `stated: 10892.17`, `delta: -1250.0`, and exit 1.
-- **Baseline comparison:** Both runs complete structured extraction; only the second triggers the arithmetic safeguard. This supports the prediction. It is a comparison of bundled replay fixtures, not a same-document live mutation. Both source documents are retained under `02-mortgage-extraction/inputs/`.
+- **Deliberate change (2026-11-12):** I copied the final mortgage solution's `mortgage_extractor/` and `fixtures/` directories into `%TEMP%\capstone-mortgage-tolerance-20261112`, then changed only `DEFAULT_TOLERANCE_USD` in the copy's `mortgage_extractor/config.py` from `1.00` to `1250.00`. I left the original application, document and recorded responses unchanged. [tolerance-comparison.txt](02-mortgage-extraction/tolerance-comparison.txt) records the setting change and checks file hashes.
+- **Prediction recorded before execution:** With the same `income_sum_mismatch.txt` and replay responses, the original $1 tolerance will flag the known $1250 discrepancy and exit 1. At a $1250 tolerance, the strict `abs(delta) > tolerance` comparison should not flag a discrepancy exactly equal to the tolerance; validation should return `consistent: true` and exit 0. This intentionally unsafe setting demonstrates a blind spot; it does not repair the arithmetic.
+- **Baseline command:** From the unmodified final mortgage solution, `.venv\Scripts\python.exe -m mortgage_extractor fixtures/documents/income_sum_mismatch.txt --mode replay --verbose`.
+- **Perturbed command:** From the temporary copy, invoke the **original solution's virtual-environment interpreter** as `<mortgage-solution>\.venv\Scripts\python.exe -m mortgage_extractor fixtures/documents/income_sum_mismatch.txt --mode replay --verbose`. The current directory selects the copied package and copied replay fixtures; no live API call is used. `<mortgage-solution>` is the final-solution directory listed in [environment.txt](environment.txt).
+- **Unmodified result:** [tolerance-baseline-run.txt](02-mortgage-extraction/tolerance-baseline-run.txt) reports `type=income_verification`, `consistent: false`, `calculated: 9642.17`, `stated: 10892.17`, `delta: -1250.0`, and `EXIT_CODE=1`.
+- **Changed-setting result:** [tolerance-perturbed-run.txt](02-mortgage-extraction/tolerance-perturbed-run.txt) reports the same extracted income fields, `consistent: true`, `discrepancies: []`, and `EXIT_CODE=0`. The stated total remains 10892.17; the result does not mean the sum was corrected.
+- **Controlled comparison:** [tolerance-comparison.txt](02-mortgage-extraction/tolerance-comparison.txt) confirms matching document SHA-256, all 9 recorded responses, identical extraction objects and identical Python package files except the one setting. The observed result matches the prediction: raising tolerance to the magnitude of the discrepancy suppresses a real $1250 inconsistency because the boundary uses `>` rather than `>=`. The original $1 setting remains in the project.
 
 ## System 3 - Multi-Source Synthesis
 

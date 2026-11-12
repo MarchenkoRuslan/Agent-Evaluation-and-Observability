@@ -1,0 +1,9 @@
+﻿PASS identical income document SHA256: 99CE61E85539DB33CA0834AD3609CB69646CE423C2BB89324CCFA0EC1DE0955C
+PASS identical recorded response files: 9
+PASS source package identical except config setting:
+- DEFAULT_TOLERANCE_USD = 1.00
++ DEFAULT_TOLERANCE_USD = 1250.00
+PASS extracted data identical across baseline and perturbed replay
+PASS baseline tolerance=1.00: consistent=false, delta=-1250.0, exit=1
+PASS perturbed tolerance=1250.00: consistent=true, discrepancies=[], exit=0
+PASS absolute delta equals tolerance; validator uses strict greater-than

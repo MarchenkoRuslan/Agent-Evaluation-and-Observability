@@ -1,0 +1,5 @@
+﻿COMMAND: .venv\Scripts\python.exe -m pytest tests/test_us04_validator.py -q
+STARTED: 2026-11-12T09:54:32.2579199+02:00
+........                                                                 [100%]
+8 passed in 8.02s
+EXIT_CODE=0
